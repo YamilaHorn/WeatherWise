@@ -5,5 +5,12 @@ export const getCountries = async () => {
         method: "GET",
         url: "https://restcountries.com/v3.1/all"
     };
-    return await ajax(optionsRequest);
-}
+    const response = await ajax(optionsRequest);
+
+  // Ordenar los países por nombre alfabéticamente
+  const sortedCountries = response.sort((a, b) =>
+    a.name.common.localeCompare(b.name.common)
+  );
+
+  return sortedCountries;
+};

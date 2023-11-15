@@ -9,10 +9,17 @@ export const getCities = async countryCode => {
             "X-RapidAPI-Host": "spott.p.rapidapi.com"
         },
         params: {
-            limit: 30,
+            limit: 50,
             type: "CITY",
             country: countryCode ?? "US",
         }
     };
-    return await ajax(optionsRequest);
-}
+    const response = await ajax(optionsRequest);
+
+    // Ordenar las ciudades por nombre alfabéticamente
+    const sortedCities = response.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+  
+    return sortedCities;
+  };

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-
 import { getCountries } from "./services/countries";
 import { getCities } from "./services/cities";
 import { getCityWeather } from "./services/weather";
+import "./App.css";
+import "../src/index.css";
 
 const App = () => {
    const [countries, setCountries] = useState([]);
@@ -25,7 +26,7 @@ const App = () => {
    return (
       <>
          <div>
-            <label>Elige un país:</label>
+            <label>Elige un país: </label>
             <select onChange={countryHandler}>
                <option value="">Selecciona</option>
                {countries.map(country => <option key={country.cca2} value={country.cca2}>{country.name.common}</option>)}
@@ -34,7 +35,7 @@ const App = () => {
 
          {cities.length > 0 && (
             <div>
-               <label>Elige una ciudad:</label>
+               <label>Elige una ciudad: </label>
                <select onChange={cityHandler}>
                   <option value="">Selecciona</option>
                   {cities.map(city => <option key={city.id}>{city.name}</option>)}
@@ -46,7 +47,7 @@ const App = () => {
 
          {weather && (
             <div>
-               <h2>Actual temperature: {weather.main.temp}º</h2>
+               <h2>Actual temperatura: {weather.main.temp}º</h2>
                <p>Min: {weather.main.temp_min.toFixed()}°</p>
                <p>Max: {weather.main.temp_max.toFixed()}°</p>
                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather icon" />
