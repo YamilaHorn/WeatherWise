@@ -9,6 +9,7 @@ const App = () => {
    const [countries, setCountries] = useState([]);
    const [cities, setCities] = useState([]);
    const [weather, setWeather] = useState(null);
+   
 
    useEffect(() => {
       (async () => {
@@ -22,6 +23,7 @@ const App = () => {
    }
 
    const cityHandler = async e => e.currentTarget.value && setWeather(await getCityWeather(e.currentTarget.value));
+
 
    return (
       <>
@@ -50,7 +52,7 @@ const App = () => {
                <h2>Actual temperatura: {weather.main.temp}º</h2>
                <p>Min: {weather.main.temp_min.toFixed()}°</p>
                <p>Max: {weather.main.temp_max.toFixed()}°</p>
-               <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather icon" />
+               <img className="weather-icon" src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather icon" />
             </div>
          )}
       </>
